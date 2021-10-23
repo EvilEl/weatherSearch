@@ -1,9 +1,16 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   render: {
-    csp: true
+    csp: {
+      hashArgorism: 'sha256',
+      policies: {
+        'script-src': [
+          "'sha256-4RS22DYeB7U14dra4KcQYxmwt5HkOInieXK1NUMBmQI='" // this line resolves the violation
+        ]
+      }
+    }
   },
-
+  target: 'server',
   head: {
     title: 'weather',
     htmlAttrs: {
