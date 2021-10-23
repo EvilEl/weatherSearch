@@ -10,7 +10,6 @@ export default {
       }
     }
   },
-  target: 'server',
   head: {
     title: 'weather',
     htmlAttrs: {
