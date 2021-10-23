@@ -1,22 +1,5 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-
-  render: {
-    csp: {
-      reportOnly: false,
-      addMeta: true,
-      hashAlgorithm: 'sha256',
-      unsafeInlineCompatiblity: true,
-      policies: {
-        'default-src': ["'self'", 'https:'],
-        'script-src': ["'self'", "'strict-dynamic'", 'https:'],
-        'style-src': ["'self'", "'strict-dynamic'", 'https:'],
-        'frame-src': [],
-        'object-src': ["'none'"],
-        'base-uri': ["'self"]
-      }
-    }
-  },
   head: {
     title: 'weather',
     htmlAttrs: {
