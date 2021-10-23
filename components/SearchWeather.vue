@@ -11,7 +11,7 @@
         />
         <span class="help-text">{{errorMessage}}</span>
       </div>
-      <button :disabled="!isActiveBtn" class="form__btn" type="submit">Запросить погоду</button>
+      <button class="form__btn" type="submit">Запросить погоду</button>
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     isActiveBtn() {
-      return this.valueScope.length
+      return this.value.length
     },
     valueScope: {
       get() {
