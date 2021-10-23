@@ -52,7 +52,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseUrl: 'http://api.weatherapi.com/v1/'
+    baseUrl: 'https://api.weatherapi.com/v1/'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

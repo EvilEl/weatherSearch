@@ -48,10 +48,7 @@ export default {
           {
             headers: {
               'Content-Type': 'application/json',
-              'x-apikey': 'f513add7bf644914bfe204034211210',
               'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Methods':
-                'GET,PUT,POST,DELETE,PATCH,OPTIONS',
             },
           }
         )
