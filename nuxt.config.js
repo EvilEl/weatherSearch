@@ -1,5 +1,25 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+
+  render: {
+    csp: {
+      reportOnly: false,
+      addMeta: true,
+      hashAlgorithm: 'sha256',
+      unsafeInlineCompatiblity: true,
+      policies: {
+        'default-src': ["'self'", 'https:', ...ALLOWED_HOSTS],
+        'script-src': ["'self'", "'strict-dynamic'", 'https:'],
+        'style-src': ["'self'", "'strict-dynamic'", 'https:'],
+        'frame-src': [],
+        'object-src': ["'none'"],
+        'base-uri': ["'self"]
+        /* "report-uri": [
+          "https://sentry.io/api/<project>/security/?sentry_key=<key>",
+        ], */
+      }
+    }
+  },
   head: {
     title: 'weather',
     htmlAttrs: {
