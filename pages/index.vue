@@ -44,7 +44,15 @@ export default {
         this.showWeather = false
         const apikey = 'f513add7bf644914bfe204034211210'
         const result = await this.$axios.$get(
-          `forecast.json?key=${apikey}&q=${this.nameCity}&lang=ru&days=10`
+          `forecast.json?key=${apikey}&q=${this.nameCity}&lang=ru&days=10`,
+          {
+            headers: {
+              'x-apikey': '59a7ad19f5a9fa0808f11931',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods':
+                'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            },
+          }
         )
         this.weatherCity = result
         this.errorRequest = ''
