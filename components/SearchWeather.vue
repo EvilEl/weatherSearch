@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <div class="form" @submit.prevent="dispatch">
+    <div class="form" @submit.prevent>
       <div class="form__group">
         <label class="form__descript" for="dynamic-label-input">Укажите город</label>
         <input
@@ -11,7 +11,7 @@
         />
         <span class="help-text">{{errorMessage}}</span>
       </div>
-      <button class="form__btn" type="submit">Запросить погоду</button>
+      <button class="form__btn" @click="dispatch" type="submit">Запросить погоду</button>
     </div>
   </div>
 </template>
@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     dispatch() {
+      console.log('yes')
       this.$emit('dispatch')
     },
     input({ target }) {
