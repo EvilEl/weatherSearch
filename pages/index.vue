@@ -47,7 +47,8 @@ export default {
           `forecast.json?key=${apikey}&q=${this.nameCity}&lang=ru&days=10`,
           {
             headers: {
-              'x-apikey': '59a7ad19f5a9fa0808f11931',
+              'Content-Type': 'application/json',
+              'x-apikey': 'f513add7bf644914bfe204034211210',
               'Access-Control-Allow-Origin': '*',
               'Access-Control-Allow-Methods':
                 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
