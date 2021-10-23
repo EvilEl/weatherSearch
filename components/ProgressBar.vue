@@ -1,6 +1,6 @@
 <template>
   <div class="progress" @mousemove="isActive" @mouseleave="isShowAnim" @click="click">
-    <div class="progress__text">Узнать погода нажми на меня</div>
+    <div class="progress__text">Узнать погода нажми на меня.</div>
     <div class="progress__bar" :style=" isActiveAnim ? style: '' "></div>
   </div>
 </template>
