@@ -42,7 +42,6 @@ export default {
   },
   methods: {
     dispatch() {
-      console.log('yes')
       this.$emit('dispatch')
     },
     input({ target }) {

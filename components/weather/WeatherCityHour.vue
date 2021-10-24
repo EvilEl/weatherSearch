@@ -1,20 +1,16 @@
 <template>
   <div class="container">
     <div class="weather-day__hours" v-if="getDate">
-      <div class="weather-day__body" v-for="item in weatherHoursDay" :key="item.time">
+      <div class="weather-day__body" v-for="item in selectedFormatingDay" :key="item.time">
         <div class="weather-day__column">
           <div class="weather-day__date-time">{{item.time}}</div>
           <div class="weather-day__condition">
             <div class="weather-day__condition-icon">
-              <img
-                class="weather-day__condition-icon _image"
-                :src="`https:${item.condition.icon}`"
-                alt
-              />
+              <img class="weather-day__condition-icon _image" :src="`https:${item.icon}`" alt />
             </div>
-            <div class="weather-day__condition-text">{{item.condition.text}}</div>
+            <div class="weather-day__condition-text">{{item.text}}</div>
           </div>
-          <div class="weather-day__temp">{{temp(item.temp_c)}}</div>
+          <div class="weather-day__temp">{{item.temp}}</div>
         </div>
       </div>
     </div>
@@ -34,22 +30,28 @@ export default {
     },
   },
   methods: {
-    temp: formatingTemp,
+    formatingTemp: formatingTemp,
   },
   computed: {
-    weatherHoursDay() {
+    selectedDay() {
       return this.weatherHour
-        .filter((item) => {
-          return item.date === this.getDate
-        })
-        .reduce((acc, cur) => {
-          acc.push(...cur.hour)
-          return acc
-        }, [])
-        .filter((item) => {
+        .find((item) => item.date === this.getDate)
+        .hour.filter((item) => {
           let time = Number(item.time.split(' ')[1].split(':')[0])
           return time % 3 === 0
         })
+    },
+    selectedFormatingDay() {
+      return this.selectedDay.reduce((acc, cur) => {
+        let formatingDay = {
+          time: cur.time,
+          icon: cur.condition.icon,
+          text: cur.condition.text,
+          temp: this.formatingTemp(cur.temp_c),
+        }
+        acc.push(formatingDay)
+        return acc
+      }, [])
     },
   },
   data() {

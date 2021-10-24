@@ -2,26 +2,7 @@
   <div class="weather-city">
     <div v-if="isShowWeather" class="container">
       <h1 class="weather-city__title">{{location.name}}</h1>
-      <div class="weather-city__days">
-        <div
-          class="weather-city__body"
-          v-for="(day) in weatherDays"
-          :key="day.date"
-          @click="getDate(day.date)"
-        >
-          <div class="weather-city__day">
-            <div class="weather-city__date">{{day.date}}</div>
-            <div class="weather-city__icon">
-              <img :src="`http:${day.icon.icon}`" class="weather-city__image" />
-            </div>
-            <div class="weather-city__temperature">
-              <div class="weather-city__min-temp">{{temp(day.day.mintemp_c)}}</div>
-              <div class="weather-city__max-temp">{{temp(day.day.maxtemp_c)}}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <WeatherCityDay :forecast="forecast" @getDate="getDate" />
       <WeatherCityHour :weatherHour="forecast" :getDate="day" />
     </div>
     <div v-else>
@@ -31,11 +12,11 @@
 </template>
 <script>
 import Loader from '../Loader.vue'
+import WeatherCityDay from './WeatherCityDay.vue'
 import WeatherCityHour from './WeatherCityHour.vue'
-import formatingTemp from '@/helpers/formatingTemp'
 
 export default {
-  components: { Loader, WeatherCityHour },
+  components: { Loader, WeatherCityHour, WeatherCityDay },
   props: {
     weatherCity: {
       type: Object,
@@ -61,12 +42,6 @@ export default {
         Object.keys(this.location).length > 0
       )
     },
-    weatherDays() {
-      return this.forecast.reduce((acc, cur) => {
-        acc.push({ date: cur.date, day: cur.day, icon: cur.day.condition })
-        return acc
-      }, [])
-    },
   },
   watch: {
     weatherCity() {
@@ -76,9 +51,7 @@ export default {
   created() {
     this.getWeatherData()
   },
-  mounted() {},
   methods: {
-    temp: formatingTemp,
     getDate(date) {
       this.day = date
     },
@@ -90,7 +63,6 @@ export default {
         this.current = current
         this.forecast = forecast.forecastday
         this.location = location
-        console.log(this.forecast)
       }, 1000)
     },
   },
